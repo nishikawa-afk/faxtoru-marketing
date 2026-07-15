@@ -229,37 +229,17 @@ h1 .em{color:var(--red)}
         <div class="bubble">こんにちは！デンチュウのAI社員・デンちゃんです</div>
         <div class="kicker">SOKKETSU MITSUMORI</div>
         <h1>御社の見積もり、<br><span class="em">いま、この場で</span>作ります。</h1>
-        <p class="sub">動画を見て、3つ答えて、プランを選ぶだけ。<br>持ち帰りゼロ・その場で最終見積もりが出ます（約10分）。</p>
+        <p class="sub">業種を選ぶと、同じ業種の会社の<b>ドラマ</b>が始まります。<br>見て、3つ答えて、プランを選ぶだけ。その場で最終見積もり（約10分）。</p>
         <div style="margin-top:30px">
-          <button class="btn" onclick="go('s1')">はじめる ▶</button>
+          <button class="btn" onclick="go('q1')">はじめる ▶</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- S1: 動画 -->
-  <section class="scr" id="s1">
-    <div class="kicker">STEP 1 / 動画でご説明</div>
-    <h1>まずデンちゃんが<span class="em">90秒</span>でご説明します</h1>
-    <div id="player">
-      <div class="inner">
-        <img src="images/denchan-hold_phone.png" alt="">
-        <div class="vt">「電話のこまった」を、ぜんぶ引き受けます</div>
-        <div class="vs">迷惑電話ブロック ／ 通話の自動録音 ／ 会話を文字で記憶</div>
-        <div id="playbtn" onclick="playVideo()">▶</div>
-      </div>
-      <div id="vhint">※本番は and-render 製の商材アニメが入ります</div>
-      <div id="prog"></div>
-    </div>
-    <div class="vrow">
-      <button class="backlink" onclick="go('s0')">← もどる</button>
-      <button class="btn ghost" onclick="go('q1')">スキップして診断へ →</button>
-    </div>
-  </section>
-
   <!-- Q1: 業種 -->
   <section class="scr" id="q1">
-    <div class="kicker">STEP 2 / かんたん診断 1問目</div>
+    <div class="kicker">STEP 1 / まず、御社の業種を</div>
     <h1>御社の<span class="em">お仕事</span>は？</h1>
     <div class="tiles g4">
       <button class="tile" onclick="ans('ind','建設・製造')"><span class="ic">🏗️</span><span><span class="t1">建設・製造</span><div class="t2">現場と事務所の電話が多い</div></span></button>
@@ -267,23 +247,43 @@ h1 .em{color:var(--red)}
       <button class="tile" onclick="ans('ind','士業・事務所')"><span class="ic">📋</span><span><span class="t1">士業・事務所</span><div class="t2">「言った言わない」が怖い</div></span></button>
       <button class="tile" onclick="ans('ind','店舗・サービス')"><span class="ic">🏪</span><span><span class="t1">店舗・サービス</span><div class="t2">営業中は電話に出られない</div></span></button>
     </div>
-    <div class="rownav"><button class="backlink" onclick="go('s1')">← もどる</button></div>
+    <div class="rownav"><button class="backlink" onclick="go('s0')">← もどる</button></div>
+  </section>
+
+  <!-- S1: 業種別ドラマ -->
+  <section class="scr" id="s1">
+    <div class="kicker">STEP 2 / 同じ業種の、ある会社の物語</div>
+    <h1 style="font-size:38px"><span id="dind">御社</span>と同じ現場の<span class="em">ドラマ</span>を、90秒だけ</h1>
+    <div id="player">
+      <div class="inner">
+        <img src="images/denchan-hold_phone.png" alt="">
+        <div class="vt" id="dtitle">『私が、門番。』</div>
+        <div class="vs" id="dsub">——ある会社の、電話をめぐる物語</div>
+        <div id="playbtn" onclick="playVideo()">▶</div>
+      </div>
+      <div id="vhint">※本番は業種別の実写ドラマ（60〜90秒）が入ります</div>
+      <div id="prog"></div>
+    </div>
+    <div class="vrow">
+      <button class="backlink" onclick="go('q1')">← 業種を選び直す</button>
+      <button class="btn ghost" onclick="go('q2')">スキップして診断へ →</button>
+    </div>
   </section>
 
   <!-- Q2: 規模 -->
   <section class="scr" id="q2">
-    <div class="kicker">STEP 2 / かんたん診断 2問目</div>
+    <div class="kicker">STEP 3 / かんたん診断 あと2問</div>
     <h1>会社の<span class="em">規模</span>は？</h1>
     <div class="tiles g2">
       <button class="tile" onclick="ans('size','10名まで（電話1〜2回線）')"><span class="ic">👤</span><span><span class="t1">10名まで</span><div class="t2">電話はだいたい1〜2回線</div></span></button>
       <button class="tile" onclick="ans('size','11名以上（電話3回線〜）')"><span class="ic">👥</span><span><span class="t1">11名以上</span><div class="t2">電話は3回線以上ある</div></span></button>
     </div>
-    <div class="rownav"><button class="backlink" onclick="go('q1')">← もどる</button></div>
+    <div class="rownav"><button class="backlink" onclick="go('s1')">← もどる</button></div>
   </section>
 
   <!-- Q3: 困りごと -->
   <section class="scr" id="q3">
-    <div class="kicker">STEP 2 / かんたん診断 3問目</div>
+    <div class="kicker">STEP 3 / かんたん診断 最後の1問</div>
     <h1>いま、いちばんの<span class="em">こまりごと</span>は？</h1>
     <div class="tiles g4">
       <button class="tile" onclick="ans('pain','迷惑電話・詐欺電話が不安')"><span class="ic">🚫</span><span><span class="t1">迷惑電話・詐欺電話</span><div class="t2">変な営業電話が多くて不安</div></span></button>
@@ -296,7 +296,7 @@ h1 .em{color:var(--red)}
 
   <!-- S3: 2案提示 -->
   <section class="scr" id="plans">
-    <div class="kicker">STEP 3 / プランは2つだけ</div>
+    <div class="kicker">STEP 4 / プランは2つだけ</div>
     <h1 style="font-size:36px"><span id="plead">御社</span>には、この<span class="em">2つ</span>。お好きな方をどうぞ</h1>
     <div class="plans">
       <button class="plan" onclick="pick('oudou')">
@@ -331,7 +331,7 @@ h1 .em{color:var(--red)}
 
   <!-- S4: 最終見積もり -->
   <section class="scr" id="quote">
-    <div class="kicker">STEP 4 / 最終見積もり</div>
+    <div class="kicker">STEP 5 / 最終見積もり</div>
     <h1>はい、<span class="em">お見積もり</span>できました</h1>
     <div class="grid">
       <div class="qsheet">
@@ -368,7 +368,7 @@ h1 .em{color:var(--red)}
     <div class="wrap">
       <img src="images/denchan-happy.png" alt="">
       <div style="flex:1">
-        <div class="kicker">STEP 5 / お手元にお送りします</div>
+        <div class="kicker">お手元にお送りします</div>
         <h1>ありがとうございます！<br><span class="em">LINEかメール</span>でお送りします</h1>
         <div class="sendcard">
           <div class="qr"></div>
@@ -399,7 +399,14 @@ h1 .em{color:var(--red)}
 const state = { ind:null, size:null, pain:null, plan:'oudou', lines:1 };
 const PRICE = { oudou:{base:19800, add:6800}, zero:{base:12800, add:4400} };
 const PLAN_NAME = { oudou:'まるごとまもりプラン', zero:'装置0円スタート' };
-const STEP_OF = { s0:0, s1:1, q1:2, q2:2, q3:2, plans:3, quote:4, done:5 };
+const STEP_OF = { s0:0, q1:1, s1:2, q2:3, q3:3, plans:4, quote:5, done:5 };
+// 業種別ドラマライブラリ（本番は tearjerker 型の実写ドラマ60〜90秒を差し込む）
+const DRAMA = {
+  '建設・製造':     { t:'『声が、現場を守る。』', s:'現場監督・勝さん(52)——「言った言わない」が消えた日' },
+  '医療・介護':     { t:'『聞き逃さない受付』',   s:'受付リーダー・恵さん(45)——電話の向こうの不安に、ぜんぶ出る' },
+  '士業・事務所':   { t:'『私が、門番。』',       s:'事務員・千夏さん(48)——事務所の電話を守る物語' },
+  '店舗・サービス': { t:'『店番のいない店』',     s:'店主・大将(58)——営業中の電話は、AIが店番する' }
+};
 
 // ===== 画面遷移 =====
 function go(id){
@@ -425,14 +432,23 @@ function playVideo(){
   vt = setInterval(()=>{
     w += 4;                       // モック: 約7秒で再生完了扱い
     p.style.width = w + '%';
-    if(w>=100){ clearInterval(vt); setTimeout(()=>go('q1'), 400); }
+    if(w>=100){ clearInterval(vt); setTimeout(()=>go('q2'), 400); }
   }, 280);
 }
 
 // ===== 診断 =====
 function ans(key, val){
   state[key] = val;
-  if(key==='ind') go('q2');
+  if(key==='ind'){
+    // 業種に合わせてドラマを差し替えてから上映へ
+    const d = DRAMA[val] || { t:'『私が、門番。』', s:'——ある会社の、電話をめぐる物語' };
+    document.getElementById('dind').textContent = val;
+    document.getElementById('dtitle').textContent = d.t;
+    document.getElementById('dsub').textContent = d.s;
+    document.getElementById('prog').style.width = '0%';
+    document.getElementById('playbtn').style.display = 'flex';
+    go('s1');
+  }
   else if(key==='size') go('q3');
   else {
     // 困りごとで2案の主語を変える（推薦の芽）
