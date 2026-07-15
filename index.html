@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>デンチュウ営業パートナー募集｜営業トークはAIに任せて、人間関係だけ築こう。</title>
-<meta name="description" content="営業トークはAIデンちゃんが全代行。あなたは知り合いの社長に無料診断を渡すだけ。決まったら初回＋契約が続く限り毎月の2層報酬。完全成果報酬・在庫なし・ノルマなし。">
+<title>AIデンちゃん｜電話も、ネットも、書類も。会社まるごと見回るAI社員</title>
+<meta name="description" content="迷惑電話は止める。電話の約束は忘れない。ネットの異変は先に知らせる。FAXは手入力ゼロ。デンチュウのAI社員「デンちゃん」が、あなたの会社を24時間見回ります。社員の操作はゼロ、承認はワンタップ、情報は外に出さない設計。月5,000円から。">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="andAI">
-<meta property="og:title" content="デンチュウ営業パートナー募集｜AIに任せて、人間関係だけ築こう。">
-<meta property="og:description" content="営業は全部AI代行。あなたは知り合いに渡すだけで、決まったら毎月入る。ノルマなし・加盟金なし・ノルマなし。">
-<meta property="og:url" content="https://faxtoru.vercel.app/denchu-partner">
+<meta property="og:site_name" content="デンチュウ × and°">
+<meta property="og:title" content="AIデンちゃん｜会社まるごと見回るAI社員">
+<meta property="og:description" content="迷惑電話は止める。約束は忘れない。ネットの異変は先に知らせる。社員は何もしなくていい、見回り型のAI社員です。">
+<meta property="og:url" content="https://faxtoru-marketing.vercel.app/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-/* === Design System === */
+/* === Design System (and-comic) === */
 :root{
   --ink:#15151a; --ink-2:#23232b; --ink-soft:#44444e; --ink-mute:#83838f;
   --paper:#f6efe1; --paper-2:#fbf7ee;
   --red:#e3261d; --red-deep:#b3140f; --red-tint:#fce5e1;
-  --yellow:#ffd21e; --cyan:#15c6e6; --blue:#2148c0; --white:#fff;
+  --yellow:#ffd21e; --cyan:#15c6e6; --blue:#2148c0; --green:#1da45a; --white:#fff;
   --line:rgba(21,21,26,.12);
   --hard:5px 5px 0 var(--ink); --hard-sm:3px 3px 0 var(--ink); --hard-red:5px 5px 0 var(--red-deep);
   --r:16px;
@@ -57,13 +57,13 @@ header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:4p
 /* FV */
 .fv{padding:52px 0 48px;position:relative;overflow:hidden}
 .fv::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(21,21,26,.07) 1.2px,transparent 1.3px);background-size:10px 10px;pointer-events:none}
-.fv-inner{display:grid;grid-template-columns:1fr 1.15fr;gap:32px;align-items:center;position:relative}
-.fv-text h1{font-size:clamp(28px,5.2vw,48px);font-weight:900;margin:12px 0 16px;line-height:1.28}
-.fv-lead{font-size:15px;font-weight:700;margin-bottom:20px;line-height:1.8}
+.fv-inner{display:grid;grid-template-columns:1.15fr 1fr;gap:32px;align-items:center;position:relative}
+.fv-text h1{font-size:clamp(28px,5.2vw,46px);font-weight:900;margin:12px 0 16px;line-height:1.28}
+.fv-lead{font-size:15px;font-weight:700;margin-bottom:20px;line-height:1.9}
 .fv-badges{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:24px}
 .fv-badges span{background:var(--paper-2);border:3px solid var(--ink);border-radius:18px;box-shadow:var(--hard-sm);padding:4px 12px;font-weight:900;font-size:12px;color:var(--ink)}
 .fv-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.fv-char{position:relative;width:100%;max-width:380px}
+.fv-char{position:relative;width:100%;max-width:380px;justify-self:end}
 .fv-char img{width:100%;height:auto;display:block;filter:drop-shadow(8px 8px 0 rgba(21,21,26,.15))}
 
 /* speech bubble */
@@ -71,43 +71,68 @@ header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:4p
 .bubble::before{content:"";position:absolute;bottom:-12px;right:16px;width:0;height:0;border-left:10px solid transparent;border-top:12px solid var(--ink);border-right:2px solid transparent}
 .bubble::after{content:"";position:absolute;bottom:-8px;right:18px;width:0;height:0;border-left:8px solid transparent;border-top:10px solid var(--yellow);border-right:2px solid transparent}
 
-/* flow with denchan */
-.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.flow-step{background:var(--white);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard-sm);padding:14px;text-align:center;position:relative;display:grid;grid-template-rows:auto auto 1fr auto;gap:8px}
-.flow-step-img{width:100%;max-width:120px;margin:0 auto;aspect-ratio:1}
-.flow-step-img img{width:100%;height:auto}
-.flow-step .no{font-family:var(--display);font-size:26px;color:var(--red);-webkit-text-stroke:.7px var(--ink);paint-order:stroke fill;line-height:1}
-.flow-step h3{font-size:14px;margin:4px 0 3px}
-.flow-step p{font-size:11.5px;flex-grow:1}
-.flow-step .who{display:inline-block;margin-top:6px;font-size:9px;font-weight:900;border:2px solid var(--ink);border-radius:10px;padding:1px 8px;background:var(--yellow);color:var(--ink)}
+/* pains */
+.pains{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pain{background:var(--white);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard-sm);padding:14px 16px;display:flex;gap:10px;align-items:flex-start;font-weight:700;color:var(--ink);font-size:14px}
+.pain .chk{flex:none;width:26px;height:26px;border:3px solid var(--ink);border-radius:6px;background:var(--yellow);display:grid;place-items:center;font-weight:900;color:var(--ink);font-size:15px}
+.pain small{display:block;font-size:11.5px;color:var(--ink-mute);font-weight:500;margin-top:2px}
 
-/* hero cards */
-.hero-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
-.hero-card{background:var(--white);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard);overflow:hidden;display:grid;grid-template-rows:auto 1fr}
-.hero-card-img{width:100%;aspect-ratio:1;object-fit:cover;border-bottom:4px solid var(--ink)}
-.hero-card-text{padding:14px;display:flex;flex-direction:column}
-.hero-card b{font-size:14px;color:var(--ink)}
-.hero-card small{font-size:12px;color:var(--ink-mute);font-weight:700;margin-top:4px}
+/* job cards */
+.jobs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.job{background:var(--white);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard);overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.job-img{width:100%;aspect-ratio:1.35;object-fit:cover;object-position:top;border-bottom:4px solid var(--ink);background:var(--paper-2)}
+.job-text{padding:16px;display:flex;flex-direction:column;gap:6px}
+.job-text .tag{align-self:flex-start;font-size:10px;font-weight:900;border:2px solid var(--ink);border-radius:10px;padding:1px 9px;background:var(--cyan);color:var(--ink)}
+.job-text b{font-size:16px;color:var(--ink);font-family:var(--jp-head)}
+.job-text .one{font-size:13px;font-weight:900;color:var(--red)}
+.job-text small{font-size:12px;color:var(--ink-soft);font-weight:500;line-height:1.7}
 
-/* reward table */
-.rtable{width:100%;border-collapse:separate;border-spacing:0;background:var(--white);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard);overflow:hidden;font-size:13.5px}
-.rtable th{background:var(--ink);color:#fff;font-family:var(--jp-head);padding:11px 13px;text-align:left;font-size:12px}
-.rtable td{padding:12px 13px;border-top:2px solid var(--line);color:var(--ink);font-weight:700}
-.rtable td.hl{color:var(--red);font-weight:900}
-.model-box{margin-top:20px;background:var(--red-tint);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard-sm);padding:20px}
-.model-box .big{font-family:var(--jp-head);font-weight:900;font-size:clamp(20px,3.4vw,28px);color:var(--ink)}
-.model-box .big .n{color:var(--red);font-size:1.38em}
+/* zero offer */
+.zero-box{background:var(--ink);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard-red);padding:28px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;color:#fff;position:relative;overflow:hidden}
+.zero-box::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1.2px,transparent 1.3px);background-size:10px 10px;pointer-events:none}
+.zero-box h3{color:#fff;font-size:clamp(20px,3.4vw,30px);margin-bottom:10px;position:relative}
+.zero-box h3 .n{color:var(--yellow)}
+.zero-box p{font-size:13.5px;font-weight:700;position:relative}
+.zero-box .price{position:relative;text-align:center;background:var(--red);border:4px solid #fff;border-radius:var(--r);padding:18px 22px;box-shadow:var(--hard-sm)}
+.zero-box .price .b{font-family:var(--display);font-size:40px;line-height:1;-webkit-text-stroke:1px var(--ink);paint-order:stroke fill}
+.zero-box .price small{display:block;font-size:11px;font-weight:900;margin-top:4px}
+.zero-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;position:relative}
+.zero-steps div{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.4);border-radius:10px;padding:9px 11px;font-size:12px;font-weight:700}
+.zero-steps b{color:var(--yellow)}
 
-/* safety with denchan hero */
-.safety-hero{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:center;margin-bottom:24px}
-.safety-hero-text h3{font-size:18px;margin-bottom:8px;font-family:var(--jp-head)}
+/* story before/after */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard-sm);padding:18px;background:var(--white)}
+.panel.before{background:var(--paper-2)}
+.panel .plabel{display:inline-block;font-family:var(--display);font-size:15px;letter-spacing:.05em;padding:2px 12px;border:3px solid var(--ink);border-radius:14px;margin-bottom:12px}
+.panel.before .plabel{background:var(--ink);color:#fff}
+.panel.after .plabel{background:var(--yellow);color:var(--ink)}
+.panel ul{list-style:none;display:grid;gap:9px}
+.panel li{font-size:13px;font-weight:700;color:var(--ink);padding-left:22px;position:relative}
+.panel.before li::before{content:"×";position:absolute;left:0;color:var(--red);font-weight:900}
+.panel.after li::before{content:"○";position:absolute;left:0;color:var(--green);font-weight:900}
+.panel .line-note{margin-top:12px;background:var(--paper);border:3px solid var(--ink);border-radius:10px;padding:10px 12px;font-size:12px;font-weight:700;color:var(--ink)}
+.panel .line-note .t{color:var(--red);font-weight:900}
+
+/* safety */
+.safety-hero{display:grid;grid-template-columns:1.25fr 1fr;gap:20px;align-items:center}
 .safety-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .safe{background:var(--paper-2);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard-sm);padding:16px 12px;text-align:center}
-.safe b{display:block;font-size:15px;color:var(--ink);font-family:var(--jp-head)}
-.safe small{font-size:10px;font-weight:700;color:var(--ink-mute);margin-top:3px}
-.safe .zero{font-family:var(--display);font-size:28px;color:var(--red);-webkit-text-stroke:.7px var(--ink);paint-order:stroke fill;line-height:1}
-.safety-hero-img{width:100%;max-width:240px}
+.safe b{display:block;font-size:14px;color:var(--ink);font-family:var(--jp-head)}
+.safe small{font-size:10.5px;font-weight:700;color:var(--ink-mute);margin-top:3px;display:block}
+.safe .zero{font-family:var(--display);font-size:24px;color:var(--red);-webkit-text-stroke:.7px var(--ink);paint-order:stroke fill;line-height:1;display:block;margin-bottom:4px}
+.safety-hero-img{width:100%;max-width:250px;justify-self:center}
 .safety-hero-img img{width:100%;height:auto}
+
+/* pricing */
+.stairs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:end}
+.stair{background:var(--white);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard-sm);padding:16px 14px;text-align:center}
+.stair.hl{background:var(--red-tint);box-shadow:var(--hard)}
+.stair .lv{font-size:11px;font-weight:900;color:var(--ink-mute)}
+.stair h3{font-size:15px;margin:4px 0 6px}
+.stair .pr{font-family:var(--display);font-size:26px;color:var(--red);-webkit-text-stroke:.7px var(--ink);paint-order:stroke fill;line-height:1.1}
+.stair .pr small{font-size:11px;font-family:var(--jp-head);color:var(--ink);-webkit-text-stroke:0}
+.stair p{font-size:11.5px;margin-top:8px;font-weight:700}
 
 /* FAQ */
 .faq details{background:var(--white);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard-sm);margin-bottom:12px;overflow:hidden}
@@ -130,9 +155,14 @@ footer a{color:#c8c8d2;margin:0 8px}
 
 @media(max-width:860px){
   .fv-inner{grid-template-columns:1fr}
-  .flow{grid-template-columns:1fr 1fr}
+  .fv-char{justify-self:center}
+  .pains{grid-template-columns:1fr}
+  .jobs{grid-template-columns:1fr}
+  .zero-box{grid-template-columns:1fr}
+  .zero-steps{grid-template-columns:1fr}
+  .story{grid-template-columns:1fr}
   .safety-hero{grid-template-columns:1fr}
-  .hero-row{grid-template-columns:1fr}
+  .stairs{grid-template-columns:1fr 1fr}
   .sec{padding:52px 0}
 }
 </style>
@@ -141,8 +171,8 @@ footer a{color:#c8c8d2;margin:0 8px}
 
 <header>
   <div class="wrap nav">
-    <div class="logo"><span class="mark">D</span>デンチュウ パートナー募集</div>
-    <a class="btn btn-pri" href="#cta">人生の選択肢を増やす</a>
+    <div class="logo"><span class="mark">D</span>AIデンちゃん<span style="font-size:11px;font-weight:700;color:var(--ink-mute)">by デンチュウ</span></div>
+    <a class="btn btn-pri" href="#cta">無料AI安全診断</a>
   </div>
 </header>
 
@@ -150,238 +180,257 @@ footer a{color:#c8c8d2;margin:0 8px}
 <section class="fv">
   <div class="wrap fv-inner">
     <div class="fv-text">
-      <span class="kick">Partner Wanted</span>
-      <h1>営業トークはAIに任せて、<br><span class="em">人間関係だけ</span><br>築こう。</h1>
-      <p class="fv-lead">知り合いの社長に無料診断を渡すだけで、決まったら毎月入る。営業経験ゼロでも、営業トークは全部AI任せだから大丈夫。月1件で年74万。ノルマもないから、あなたのペースで。</p>
+      <span class="kick">AI Staff "DENCHAN"</span>
+      <h1>電話も、ネットも、書類も。<br>会社まるごと、<br><span class="em">デンちゃんが見回る。</span></h1>
+      <p class="fv-lead">迷惑電話は止める。電話の約束は忘れない。ネットの異変は先に知らせる。FAX注文は手入力ゼロ。——社員のみなさんは、<span class="emy">いつも通り働くだけ</span>。あとは24時間、AI社員のデンちゃんが見回ります。</p>
       <div class="fv-badges">
-        <span>在庫なし</span><span>加盟金なし</span><span>ノルマなし</span><span>いつでも終了</span>
+        <span>社員の操作ゼロ</span><span>承認はワンタップ</span><span>情報は外に出さない</span><span>月5,000円から</span>
       </div>
       <div class="fv-cta">
-        <a class="btn btn-pri" href="#cta">30分の面談を予約</a>
-        <a class="btn btn-ghost" href="#reward">報酬を見る</a>
+        <a class="btn btn-pri" href="#cta">無料AI安全診断を受ける</a>
+        <a class="btn btn-ghost" href="#jobs">デンちゃんの仕事を見る</a>
       </div>
     </div>
     <div class="fv-char">
-      <img src="./images/denchan-main.png" alt="AIデンちゃん：電柱の帽子をかぶった電柱キャラが拳を掲げている" loading="lazy">
-      <div class="bubble">営業トークはうちが全部組みますから、あなたは人間関係だけ築いてください。</div>
+      <img src="./images/denchan-main.png" alt="AIデンちゃん：電柱の帽子をかぶったキャラクターが拳を掲げている" loading="lazy">
+      <div class="bubble">見回りはまかせて、社長は本業だけやっててください！</div>
     </div>
   </div>
 </section>
 
-<!-- Flow with Denchan -->
+<!-- Pains -->
 <section class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <span class="kick cy">How It Works</span>
-      <h2>営業トークはAIに。<span class="em">あなたは4ステップだけ。</span></h2>
+      <span class="kick cy">Sound Familiar?</span>
+      <h2>こんな「困った」、<span class="em">ありませんか。</span></h2>
     </div>
-    <div class="flow">
-      <div class="flow-step">
-        <div class="flow-step-img">
-          <img src="./images/denchan-determined.png" alt="AIデンちゃん：決意の表情" loading="lazy">
-        </div>
-        <span class="no">01</span>
-        <h3>思い出す</h3>
-        <p>FAXと紙が多そうな、昔からの知り合いの社長。</p>
-        <span class="who">あなた</span>
-      </div>
-      <div class="flow-step">
-        <div class="flow-step-img">
-          <img src="./images/denchan-happy.png" alt="AIデンちゃん：にっこり笑顔" loading="lazy">
-        </div>
-        <span class="no">02</span>
-        <h3>渡す</h3>
-        <p>AIデンちゃんが組んだ「無料AI診断」をLINEで転送。</p>
-        <span class="who">あなた</span>
-      </div>
-      <div class="flow-step">
-        <div class="flow-step-img">
-          <img src="./images/denchan-phone.png" alt="AIデンちゃん：電話対応中" loading="lazy">
-        </div>
-        <span class="no">03</span>
-        <h3>見守る</h3>
-        <p>商談・見積・設置は全部デンチュウ。同席不要。</p>
-        <span class="who">デンチュウ</span>
-      </div>
-      <div class="flow-step">
-        <div class="flow-step-img">
-          <img src="./images/denchan-hold_papers.png" alt="AIデンちゃん：書類を持つ" loading="lazy">
-        </div>
-        <span class="no">04</span>
-        <h3>貰う</h3>
-        <p>決まったら初回＋契約が続く限り、毎月20%。ずっと。</p>
-        <span class="who">あなた</span>
-      </div>
+    <div class="pains">
+      <div class="pain"><span class="chk">✓</span><div>「言った言わない」で揉めたことがある<small>電話の口約束・値引き・納期が、誰の記憶にも残っていない</small></div></div>
+      <div class="pain"><span class="chk">✓</span><div>迷惑電話・しつこい営業電話に時間を取られている<small>1本2分でも、月に何十本。現場の集中が切れる</small></div></div>
+      <div class="pain"><span class="chk">✓</span><div>「ネット繋がらん、なんとかせえ」が突然起きる<small>原因がわからないまま業務が止まり、怒りだけが積もる</small></div></div>
+      <div class="pain"><span class="chk">✓</span><div>FAXの注文を、手で打ち直している<small>1枚10分×毎日。打ち間違えれば誤出荷</small></div></div>
+      <div class="pain"><span class="chk">✓</span><div>辞めた人の頭の中に、やり方があった<small>マニュアルはあるが、探すより人に聞く方が早い会社</small></div></div>
+      <div class="pain"><span class="chk">✓</span><div>社員がこっそり無料AIに社内情報を貼っている<small>禁止してもなくならない。いちばん怖い情報漏れはここ</small></div></div>
     </div>
+    <p style="margin-top:20px;text-align:center;font-family:var(--jp-head);font-weight:900;font-size:17px;color:var(--ink)">ぜんぶ、<span class="emy">デンちゃんの見回り範囲</span>です。</p>
   </div>
 </section>
 
-<!-- AIデンちゃんの仕事 -->
-<section class="sec" style="background:var(--paper-2);border-top:4px solid var(--ink);border-bottom:4px solid var(--ink)">
+<!-- Jobs -->
+<section class="sec" id="jobs" style="background:var(--paper-2);border-top:4px solid var(--ink);border-bottom:4px solid var(--ink)">
   <div class="wrap">
     <div class="sec-head">
-      <span class="kick cy">AI Denchan's Jobs</span>
-      <h2>営業苦手？大丈夫。<span class="em">AIデンちゃんが全代行。</span></h2>
+      <span class="kick cy">Denchan's 5 Jobs</span>
+      <h2>デンちゃんの、<span class="em">5つの仕事。</span></h2>
     </div>
-    <div class="hero-row">
-      <div class="hero-card">
-        <img src="./images/denchan-happy.png" alt="AIデンちゃん：にっこり笑顔" loading="lazy">
-        <div class="hero-card-text">
-          <b>営業弾を毎回組む</b>
-          <small>「◯◯業の知り合いがいる」と一言で、その業種に刺さる資料と送付文を即返す。コピーから資料まで。</small>
+    <div class="jobs">
+      <div class="job">
+        <img class="job-img" src="./images/denchan-surprised.png" alt="AIデンちゃん：異変に気づいた表情" loading="lazy">
+        <div class="job-text">
+          <span class="tag">見回り便</span>
+          <b>ネットの異変は、先に知らせる</b>
+          <span class="one">怒る前に、もう動いてる。</span>
+          <small>ネットワークを24時間見回り、遮断を検知したら「どこで切れたか」「自分で直せる手順」「直らなければ訪問手配済み」まで、先にLINEでお知らせ。</small>
         </div>
       </div>
-      <div class="hero-card">
-        <img src="./images/denchan-phone.png" alt="AIデンちゃん：電話を持って話している" loading="lazy">
-        <div class="hero-card-text">
-          <b>追いかけを代行</b>
-          <small>診断を渡した後の返信なしは、7日・14日でAIが追いかけ文面を作成。「送っときますか？」だけ聞く。</small>
+      <div class="job">
+        <img class="job-img" src="./images/denchan-hold_phone.png" alt="AIデンちゃん：受話器を持っている" loading="lazy">
+        <div class="job-text">
+          <span class="tag">でんわとる</span>
+          <b>電話の約束は、忘れない</b>
+          <span class="one">「あの値引き、いつ言った？」に即答。</span>
+          <small>全通話が自動で文字になり、会社の記憶に。口約束・電話注文・クレームの経緯を、該当通話つきで検索できます。社員は普段どおり電話するだけ。</small>
         </div>
       </div>
-      <div class="hero-card">
-        <img src="./images/denchan-hold_clipboard.png" alt="AIデンちゃん：チェックリスト用紙を持っている" loading="lazy">
-        <div class="hero-card-text">
-          <b>成果を記帳・見える化</b>
-          <small>送付→反応→成約まで自動追跡。月次の報酬明細も自動生成。あなたの成長が目に見える。</small>
+      <div class="job">
+        <img class="job-img" src="./images/denchan-hold_papers.png" alt="AIデンちゃん：FAX用紙を持っている" loading="lazy">
+        <div class="job-text">
+          <span class="tag">ファクとる</span>
+          <b>FAX注文は、手入力ゼロ</b>
+          <span class="one">読むのはAI、決めるのはあなた。</span>
+          <small>届いたFAXをAIが読み取り、注文データに変換。人は最後の確認をワンタップするだけ。打ち直しの時間と誤出荷が消えます。</small>
+        </div>
+      </div>
+      <div class="job">
+        <img class="job-img" src="./images/denchan-hold_clipboard.png" alt="AIデンちゃん：マニュアルを持っている" loading="lazy">
+        <div class="job-text">
+          <span class="tag">scan革命</span>
+          <b>会社の知恵を、食べて答える</b>
+          <span class="one">ベテランの頭の中を、辞めさせない。</span>
+          <small>マニュアル・価格表・引き継ぎ資料を食べたデンちゃんが、新人の「これどうやるんですか」に24時間答えます。個人情報ゼロの資料から始められます。</small>
+        </div>
+      </div>
+      <div class="job">
+        <img class="job-img" src="./images/denchan-determined.png" alt="AIデンちゃん：守りを固める決意の表情" loading="lazy">
+        <div class="job-text">
+          <span class="tag">まもり番</span>
+          <b>情報が漏れる前に、閉じ込める</b>
+          <span class="one">いちばんの漏洩は、社員の野良AI。</span>
+          <small>社員がこっそり使う無料AIへの貼り付けを、会社が管理する安全な箱に置き換え。危ないデータは隔離し、伏せ字にした「安全版」を作ってから承認をもらいます。</small>
+        </div>
+      </div>
+      <div class="job">
+        <img class="job-img" src="./images/denchan-happy.png" alt="AIデンちゃん：にっこり笑顔で報告" loading="lazy">
+        <div class="job-text">
+          <span class="tag">週いちの報告</span>
+          <b>使い方は、デンちゃんが届ける</b>
+          <span class="one">「今週の約束3件、要フォロー2件」</span>
+          <small>溜まった記憶から、フォローすべき約束・お客様の関心・ネットの調子を週いちで報告。使いこなす努力は要りません。使い方ごと届きます。</small>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 実績ストーリー -->
-<section class="sec" style="background:var(--paper-2);border-top:4px solid var(--ink);border-bottom:4px solid var(--ink)">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kick cy">Real Stories</span>
-      <h2>実際はこう増えていく。</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-      <div style="background:#fff;border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard-sm);padding:18px;text-align:center">
-        <div style="font-family:var(--jp-head);font-weight:900;font-size:14px;color:var(--ink);margin-bottom:12px">OA営業ベテラン</div>
-        <div style="font-size:11px;color:var(--ink-mute);margin-bottom:10px">営業経験が活きる</div>
-        <div style="background:var(--red-tint);border:3px solid var(--ink);border-radius:8px;padding:10px;margin-bottom:10px">
-          <div style="font-family:var(--display);font-size:22px;color:var(--red);-webkit-text-stroke:.6px var(--ink);paint-order:stroke fill;line-height:1">初月</div>
-          <div style="font-family:var(--jp-head);font-weight:900;font-size:13px;margin-top:3px">3件 決定</div>
-          <div style="font-size:10px;color:var(--ink-mute);margin-top:2px">初回＋契約開始</div>
-        </div>
-        <div style="background:var(--paper-2);border:3px solid var(--ink);border-radius:8px;padding:10px">
-          <div style="font-family:var(--display);font-size:20px;color:var(--ink);-webkit-text-stroke:.5px var(--red);paint-order:stroke fill;line-height:1">3ヶ月後</div>
-          <div style="font-family:var(--jp-head);font-weight:900;font-size:13px;margin-top:3px">月額 約50万</div>
-          <div style="font-size:10px;color:var(--ink-mute);margin-top:2px">5件の継続契約</div>
-        </div>
-      </div>
-      <div style="background:#fff;border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard-sm);padding:18px;text-align:center">
-        <div style="font-family:var(--jp-head);font-weight:900;font-size:14px;color:var(--ink);margin-bottom:12px">保険営業</div>
-        <div style="font-size:11px;color:var(--ink-mute);margin-bottom:10px">営業ネットがある人</div>
-        <div style="background:var(--red-tint);border:3px solid var(--ink);border-radius:8px;padding:10px;margin-bottom:10px">
-          <div style="font-family:var(--display);font-size:22px;color:var(--red);-webkit-text-stroke:.6px var(--ink);paint-order:stroke fill;line-height:1">初月</div>
-          <div style="font-family:var(--jp-head);font-weight:900;font-size:13px;margin-top:3px">1件 決定</div>
-          <div style="font-size:10px;color:var(--ink-mute);margin-top:2px">まず 6.2万円</div>
-        </div>
-        <div style="background:var(--paper-2);border:3px solid var(--ink);border-radius:8px;padding:10px">
-          <div style="font-family:var(--display);font-size:20px;color:var(--ink);-webkit-text-stroke:.5px var(--red);paint-order:stroke fill;line-height:1">3ヶ月後</div>
-          <div style="font-family:var(--jp-head);font-weight:900;font-size:13px;margin-top:3px">月額 約20万</div>
-          <div style="font-size:10px;color:var(--ink-mute);margin-top:2px">3件の継続契約</div>
-        </div>
-      </div>
-      <div style="background:#fff;border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard-sm);padding:18px;text-align:center">
-        <div style="font-family:var(--jp-head);font-weight:900;font-size:14px;color:var(--ink);margin-bottom:12px">士業・退役営業</div>
-        <div style="font-size:11px;color:var(--ink-mute);margin-bottom:10px">ペースは自由で充分</div>
-        <div style="background:var(--red-tint);border:3px solid var(--ink);border-radius:8px;padding:10px;margin-bottom:10px">
-          <div style="font-family:var(--display);font-size:22px;color:var(--red);-webkit-text-stroke:.6px var(--ink);paint-order:stroke fill;line-height:1">初月</div>
-          <div style="font-family:var(--jp-head);font-weight:900;font-size:13px;margin-top:3px">0件</div>
-          <div style="font-size:10px;color:var(--ink-mute);margin-top:2px">焦らず準備</div>
-        </div>
-        <div style="background:var(--paper-2);border:3px solid var(--ink);border-radius:8px;padding:10px">
-          <div style="font-family:var(--display);font-size:20px;color:var(--ink);-webkit-text-stroke:.5px var(--red);paint-order:stroke fill;line-height:1">3ヶ月後</div>
-          <div style="font-family:var(--jp-head);font-weight:900;font-size:13px;margin-top:3px">月額 約15万</div>
-          <div style="font-size:10px;color:var(--ink-mute);margin-top:2px">2件の継続契約</div>
-        </div>
-      </div>
-    </div>
-    <p class="note" style="margin-top:16px;text-align:center">※ 試算です。成果は個人差があります。ただ「決まったら毎月」の仕組みなので、1件が1万円／月を生み続ける。</p>
-  </div>
-</section>
-
-<!-- 報酬 -->
-<section class="sec" id="reward">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kick">Reward</span>
-      <h2>決めたら、<span class="em">ずっと入る。</span></h2>
-    </div>
-    <table class="rtable">
-      <tr><th>成果</th><th>初回</th><th>毎月（ずっと）</th></tr>
-      <tr><td>AI月額サービス（ファクとる等）</td><td class="hl">初月の100%相当</td><td class="hl">月額の20%（契約継続中）</td></tr>
-      <tr><td>初期導入費（5〜10万円）</td><td class="hl">30%</td><td>—</td></tr>
-      <tr><td>OA機器（複合機・電話など）</td><td class="hl">粗利の30%</td><td>—</td></tr>
-    </table>
-    <div class="model-box">
-      <p style="font-weight:700;margin-bottom:4px"><span class="kick" style="font-size:14px">Model</span></p>
-      <p class="big">月1件 決まると、<br><span class="n">初年度 約74万円。</span></p>
-      <p style="font-weight:700;margin-top:6px;font-size:14px">2件＋機器同時で約180万円。そしてそれは翌年以降も毎月、ずっと入り続ける。</p>
-      <p class="note" style="margin-top:8px">※ モデル試算です（ファクとる月額2.5万想定）。収入保証ではありません。</p>
-    </div>
-  </div>
-</section>
-
-<!-- 安心 with Denchan -->
+<!-- Zero offer -->
 <section class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <span class="kick">No Risk</span>
-      <h2>お金も時間も、<span class="emy">ゼロで始める。</span></h2>
+      <span class="kick">Zero Hardware</span>
+      <h2>箱は0円。<span class="em">記憶は月額。</span></h2>
+    </div>
+    <div class="zero-box">
+      <div>
+        <h3>通話録音の機械、<span class="n">0円</span>で置いていきます。</h3>
+        <p>これまで通話録音装置は「本体を買って、録音400時間の解放にさらに一括20万円」が相場でした。デンチュウは装置を0円で設置し、録音はぜんぶデンちゃんの記憶へ。容量の上限も、聞き返す手間もありません。迷惑電話フィルタ（トビラフォン）との同時設置にも対応します。</p>
+        <div class="zero-steps">
+          <div><b>1. 置く</b><br>録音装置0円設置。電話はいまのまま</div>
+          <div><b>2. 溜まる</b><br>全通話が自動でデンちゃんの記憶に</div>
+          <div><b>3. 効く</b><br>約束・注文・クレーム経緯を即検索</div>
+        </div>
+      </div>
+      <div class="price">
+        <span class="b">¥0</span>
+        <small>装置代・設置は月額に込み<br>従来相場：装置＋容量解放 約20万円</small>
+      </div>
+    </div>
+    <p class="note" style="margin-top:12px">※ 対応機種・回線状況により構成が変わります。月額プランとセットのご提供です。既に録音装置をお持ちの会社は「その録音、聞き返せる化」だけの追加もできます。</p>
+  </div>
+</section>
+
+<!-- Story -->
+<section class="sec" style="background:var(--paper-2);border-top:4px solid var(--ink);border-bottom:4px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick cy">One Morning</span>
+      <h2>ネットが落ちた朝の、<span class="em">ちがい。</span></h2>
+    </div>
+    <div class="story">
+      <div class="panel before">
+        <span class="plabel">BEFORE</span>
+        <ul>
+          <li>10:40　ネットが落ちる。原因不明、業務停止</li>
+          <li>10:55　「なんとかせえ！」と怒りの電話</li>
+          <li>13:00　業者が到着、1時間かけて切り分け</li>
+          <li>14:00　「回線会社の障害でした」——徒労と不満だけ残る</li>
+        </ul>
+      </div>
+      <div class="panel after">
+        <span class="plabel">AFTER</span>
+        <ul>
+          <li>10:40　ネットが落ちる</li>
+          <li>10:42　デンちゃんから先にLINEが届く</li>
+          <li>10:45　書かれた手順どおりルーターを再起動 → 復旧</li>
+          <li>電話は1本もかけていない。怒ってもいない</li>
+        </ul>
+        <div class="line-note"><span class="t">デンちゃん 10:42</span><br>「ルーターと回線装置の間で遮断を検知しました。ルーターの再起動で直る見込みです（手順の写真つき）。10分で直らなければ、明日9時の訪問を手配済みです。」</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Safety -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">Security First</span>
+      <h2>会社の情報を、<span class="emy">外に出さないAI。</span></h2>
     </div>
     <div class="safety-hero">
-      <div>
-        <div class="safety-grid">
-          <div class="safe"><span class="zero">0円</span><b>加盟金・保証金</b><small>一切なし</small></div>
-          <div class="safe"><span class="zero">0個</span><b>在庫・買取</b><small>モノは持たない</small></div>
-          <div class="safe"><span class="zero">0件</span><b>ノルマ</b><small>最低活動量なし</small></div>
-          <div class="safe"><span class="zero">即日</span><b>終了自由</b><small>メール一本でOK</small></div>
-        </div>
+      <div class="safety-grid">
+        <div class="safe"><span class="zero">学習</span><b>学習に使わせない</b><small>入力データをAIの学習に使わない契約のAPIだけを利用</small></div>
+        <div class="safe"><span class="zero">国内</span><b>データは国内保管</b><small>書類・記録は国内サーバー。国外に置きません</small></div>
+        <div class="safe"><span class="zero">1枚</span><b>見るのは最小限</b><small>AIが見るのは「その1枚・その1本」だけ。顧客台帳を丸ごと渡さない設計</small></div>
+        <div class="safe"><span class="zero">承認</span><b>勝手にやらない</b><small>確定・送信・削除は必ず人の承認。全操作を記録に残します</small></div>
       </div>
       <div class="safety-hero-img">
-        <img src="./images/denchan-surprised.png" alt="AIデンちゃん：驚き顔で親指を立てている" loading="lazy">
+        <img src="./images/denchan-determined.png" alt="AIデンちゃん：まもりを固める表情" loading="lazy">
       </div>
     </div>
-    <p class="note" style="margin-top:16px">本募集は業務委託契約です。稼働時間・場所・方法はあなたの自由。当社からの指揮命令はありません。</p>
+    <p class="note" style="margin-top:16px">「絶対に漏れない」とは言いません。言えることだけを契約書と一枚紙に明記します。UTM（セキュリティ機器）の内側で働くAIです。</p>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="sec" style="background:var(--paper-2);border-top:4px solid var(--ink);border-bottom:4px solid var(--ink)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">Price</span>
+      <h2>怖くない順に、<span class="em">階段で。</span></h2>
+    </div>
+    <div class="stairs">
+      <div class="stair">
+        <span class="lv">STEP 0</span>
+        <h3>AI安全診断</h3>
+        <div class="pr">無料</div>
+        <p>社員の野良AI利用チェック＋社内AI利用規程のテンプレ進呈。点検訪問のついでに15分。</p>
+      </div>
+      <div class="stair">
+        <span class="lv">STEP 1</span>
+        <h3>スターター</h3>
+        <div class="pr">¥5,000<small>/月</small></div>
+        <p>個人情報ゼロの社内知恵袋（マニュアル・価格表）＋安全診断つき。怖いものは何も入れません。</p>
+      </div>
+      <div class="stair hl">
+        <span class="lv">STEP 2・人気</span>
+        <h3>スタンダード</h3>
+        <div class="pr">¥15,000<small>/月</small></div>
+        <p>＋FAX手入力ゼロ（ファクとる）or 電話の記憶（でんわとる）。見回り便の追加もこの帯から。</p>
+      </div>
+      <div class="stair">
+        <span class="lv">STEP 3</span>
+        <h3>プロ</h3>
+        <div class="pr">¥30,000<small>/月</small></div>
+        <p>FAX＋電話＋知恵袋＋見回りのフル装備。録音装置0円設置はこの帯とセット。</p>
+      </div>
+    </div>
+    <p class="note" style="margin-top:16px;text-align:center">※ 表示は税別の目安。台数・回線構成でお見積りします。国のデジタル化・AI導入補助金の対象となる場合、実質負担を下げられます（申請はデンチュウがお手伝いします）。</p>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="sec" style="background:var(--paper-2);border-top:4px solid var(--ink)">
+<section class="sec">
   <div class="wrap faq">
     <div class="sec-head">
       <span class="kick cy">FAQ</span>
       <h2>よくある質問</h2>
     </div>
-    <details><summary>副業でもいいですか？</summary><div class="a">むしろ副業向けの設計です。月2〜3件渡すだけという稼働で十分。会社員の方は勤務先の副業規程をご確認ください。</div></details>
-    <details><summary>営業経験がありません。</summary><div class="a">それが正解です。経験者は「うちのやり方」が邪魔になるんです。トークも資料も全部AIが組むので、営業経験ゼロでもできます。</div></details>
-    <details><summary>1日何時間くらい必要ですか？</summary><div class="a">決まりはありません。実績者は月1〜3時間程度。時間の縛りは契約にも入れていません。</div></details>
-    <details><summary>本当に稼げるのか、心配です。</summary><div class="a">正直に言うと、人による。ただ決めたら毎月入る仕組みなので、1件が決まれば年収が底上げされる。の感覚が大事。</div></details>
-    <details><summary>個人情報の扱いが心配です。</summary><div class="a">会社名と業種だけ。担当者の個人名や連絡先はAIに渡さない運用です。プライバシー最優先。</div></details>
-    <details><summary>報酬はいつ支払われますか？</summary><div class="a">月末締め翌月末払い、銀行振込。AIが自動生成した月次明細でお見せします。透明性重視。</div></details>
+    <details><summary>個人情報が怖いので、AIはうちには早いと思う。</summary><div class="a">その感覚は正しいです。だから最初のステップは「個人情報を1件も入れない」ところから始めます（マニュアル・価格表だけ）。さらに、入力データを学習に使わない契約のAIだけを使い、データは国内保管。危ないデータは伏せ字の「安全版」を作ってから、あなたの承認を待ちます。</div></details>
+    <details><summary>社員は何を操作すればいいですか？</summary><div class="a">何も。電話はいつも通り、FAXもいつも通りです。変わるのは「確認してください」の通知にワンタップで答えることだけ。パソコンが苦手な会社ほど効きます。</div></details>
+    <details><summary>電話の機械を入れ替える必要がありますか？</summary><div class="a">ありません。いまのビジネスフォンのまま、録音の箱を足すだけです（0円設置）。将来クラウド電話に替える時も、溜まった記憶はそのまま引き継げます。</div></details>
+    <details><summary>録音は法律的に大丈夫？</summary><div class="a">通話録音は適法に運用できます。録音ガイダンスの設定や社内周知のひな形まで、導入時にセットでお渡しします。</div></details>
+    <details><summary>ネットが完全に落ちたら、見回りも死ぬのでは？</summary><div class="a">見回り係からの信号が途絶えたこと自体を「全断」として検知します。回線ごと落ちても、デンチュウ側には異常が届いています。</div></details>
+    <details><summary>解約したくなったら？</summary><div class="a">月額サービスはいつでも解約できます。溜まった記録はお渡しして退去します。人質にはしません。</div></details>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta" id="cta">
   <div class="wrap">
-    <span class="kick" style="color:var(--yellow)">Entry</span>
-    <h2>30分で人生の選択肢が増える。</h2>
-    <p>仕組み・報酬・実物のデモを全部お見せします。その場で決めなくて大丈夫。話を聞いて、考える時間をください。</p>
-    <a class="btn btn-pri" href="https://faxtoru.vercel.app/contact?src=recruit_lp_v4">30分オンライン面談を予約する</a>
-    <span class="sub">資料だけ先に見たい方は <a href="mailto:info@andinc.site?subject=デンチュウ営業パートナー資料請求&body=資料希望です。（お名前・ご経歴を一言添えてください）">資料請求はこちら</a></span>
+    <span class="kick" style="color:var(--yellow)">Free Check</span>
+    <h2>まずは、無料のAI安全診断から。</h2>
+    <p>売り込みません。社員の野良AI利用と、ネット・電話まわりの「忘れ物」を15分で点検して、結果の一枚紙を置いて帰ります。</p>
+    <a class="btn btn-pri" href="https://faxtoru.vercel.app/contact?src=denchan_lp_v5">無料AI安全診断を申し込む</a>
+    <span class="sub">お付き合いのある担当者がいる場合は、いつもの担当まで「デンちゃんの話聞かせて」とお電話ください。</span>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p>運営: デンチュウ株式会社 / 技術供給: 株式会社and</p>
-    <p style="margin-top:6px"><a href="/tokushoho">特定商取引法</a><a href="/">andAI トップ</a></p>
-    <p style="margin-top:6px">収入例はモデル試算。本募集は雇用ではなく業務委託契約です。</p>
+    <p>提供: デンチュウ株式会社（大阪） / 技術: 株式会社and°</p>
+    <p style="margin-top:6px"><a href="/partner">営業パートナー募集</a><a href="/tokushoho">特定商取引法</a></p>
+    <p style="margin-top:6px">「デンちゃん」「でんわとる」「ファクとる」は商標出願準備中です。</p>
   </div>
 </footer>
 
