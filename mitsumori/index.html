@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>デンちゃん即決見積もり v0（モック）</title>
+<style>
+:root{
+  --ink:#15151a; --ink-2:#23232b; --ink-soft:#44444e; --ink-mute:#83838f;
+  --paper:#f6efe1; --paper-2:#fbf7ee;
+  --red:#e3261d; --red-deep:#b3140f; --red-tint:#fce5e1;
+  --yellow:#ffd21e; --blue:#2148c0; --green:#1da45a; --white:#fff;
+  --hard:5px 5px 0 var(--ink); --hard-sm:3px 3px 0 var(--ink);
+  --r:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  background:var(--ink-2);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+/* ===== タブレット・ステージ ===== */
+#stage{
+  width:1180px;height:820px;background:var(--paper);
+  border-radius:26px;position:relative;overflow:hidden;
+  background-image:radial-gradient(circle,rgba(21,21,26,.06) 1.2px,transparent 1.2px);
+  background-size:22px 22px;
+  transform-origin:center center;
+}
+/* ===== ヘッダー ===== */
+#hd{
+  position:absolute;top:0;left:0;right:0;height:72px;z-index:20;
+  display:flex;align-items:center;gap:16px;padding:0 28px;
+  background:var(--white);border-bottom:3px solid var(--ink);
+}
+#hd .logo{
+  font-weight:900;font-size:20px;letter-spacing:.04em;
+  background:var(--red);color:var(--white);padding:6px 14px;border:3px solid var(--ink);
+  box-shadow:var(--hard-sm);transform:rotate(-1deg);
+}
+#hd .ttl{font-weight:900;font-size:18px;color:var(--ink)}
+#hd .spacer{flex:1}
+#steps{display:flex;gap:8px;align-items:center}
+#steps .dot{
+  width:34px;height:34px;border:3px solid var(--ink);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:14px;background:var(--white);color:var(--ink-mute);
+}
+#steps .dot.on{background:var(--yellow);color:var(--ink);box-shadow:var(--hard-sm)}
+#steps .dot.done{background:var(--green);color:var(--white)}
+#steps .bar{width:18px;height:3px;background:var(--ink)}
+/* ===== フッター ===== */
+#ft{
+  position:absolute;bottom:0;left:0;right:0;height:52px;z-index:20;
+  display:flex;align-items:center;gap:14px;padding:0 28px;
+  background:var(--ink);color:#c8c8d2;font-size:13px;font-weight:700;
+}
+#ft .agent{background:var(--yellow);color:var(--ink);padding:3px 12px;font-weight:900;border-radius:4px}
+#ft .spacer{flex:1}
+/* ===== 画面共通 ===== */
+.scr{
+  position:absolute;top:72px;bottom:52px;left:0;right:0;
+  padding:34px 48px;display:none;flex-direction:column;
+}
+.scr.on{display:flex;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+.kicker{
+  display:inline-block;background:var(--ink);color:var(--yellow);
+  font-weight:900;font-size:15px;letter-spacing:.12em;padding:6px 16px;margin-bottom:14px;
+  transform:rotate(-.5deg);align-self:flex-start;
+}
+h1{font-size:44px;font-weight:900;line-height:1.25;letter-spacing:.01em}
+h1 .em{color:var(--red)}
+.sub{font-size:19px;color:var(--ink-soft);font-weight:600;margin-top:10px;line-height:1.7}
+/* ===== 大ボタン ===== */
+.btn{
+  border:4px solid var(--ink);background:var(--red);color:var(--white);
+  font-family:inherit;font-weight:900;font-size:26px;letter-spacing:.05em;
+  padding:22px 54px;border-radius:14px;box-shadow:var(--hard);cursor:pointer;
+  transition:transform .08s,box-shadow .08s;
+}
+.btn:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink)}
+.btn.ghost{background:var(--white);color:var(--ink);font-size:18px;padding:14px 30px;border-width:3px;box-shadow:var(--hard-sm)}
+.btn.yellow{background:var(--yellow);color:var(--ink)}
+.btn.green{background:var(--green)}
+/* ===== S0 スタート ===== */
+#s0 .wrap{flex:1;display:flex;align-items:center;gap:40px}
+#s0 img{width:360px;filter:drop-shadow(6px 6px 0 rgba(21,21,26,.18))}
+#s0 .bubble{
+  background:var(--white);border:3px solid var(--ink);border-radius:16px;
+  box-shadow:var(--hard-sm);padding:14px 22px;font-weight:800;font-size:18px;
+  display:inline-block;margin-bottom:18px;position:relative;
+}
+#s0 .bubble:after{
+  content:"";position:absolute;left:-14px;top:26px;
+  border:8px solid transparent;border-right-color:var(--ink);
+}
+/* ===== S1 動画 ===== */
+#player{
+  flex:1;margin-top:22px;background:var(--ink);border:4px solid var(--ink);border-radius:var(--r);
+  box-shadow:var(--hard);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+#player .inner{text-align:center;color:var(--white);z-index:2}
+#player img{width:250px;filter:drop-shadow(0 0 30px rgba(255,210,30,.35))}
+#player .vt{font-size:26px;font-weight:900;margin-top:8px}
+#player .vs{font-size:16px;color:#c8c8d2;font-weight:700;margin-top:6px}
+#playbtn{
+  width:110px;height:110px;border-radius:50%;border:5px solid var(--white);
+  background:var(--red);color:var(--white);font-size:44px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;margin:18px auto 0;
+  box-shadow:0 0 0 10px rgba(227,38,29,.3);
+}
+#prog{position:absolute;bottom:0;left:0;height:10px;background:var(--yellow);width:0%;z-index:3;transition:width .3s linear}
+#vhint{position:absolute;top:16px;right:18px;z-index:3;background:rgba(255,255,255,.14);color:#fff;font-size:13px;font-weight:700;padding:6px 12px;border-radius:20px}
+.vrow{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+/* ===== 診断 質問 ===== */
+.tiles{flex:1;display:grid;gap:22px;margin-top:26px;align-content:center}
+.tiles.g4{grid-template-columns:1fr 1fr}
+.tiles.g2{grid-template-columns:1fr 1fr;max-height:340px}
+.tile{
+  border:4px solid var(--ink);background:var(--white);border-radius:var(--r);
+  box-shadow:var(--hard);cursor:pointer;padding:26px 30px;text-align:left;
+  font-family:inherit;transition:transform .08s,box-shadow .08s;
+  display:flex;align-items:center;gap:20px;
+}
+.tile:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink)}
+.tile .ic{font-size:44px}
+.tile .t1{font-size:26px;font-weight:900;color:var(--ink)}
+.tile .t2{font-size:15px;font-weight:600;color:var(--ink-mute);margin-top:4px}
+/* ===== 2案 ===== */
+.plans{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:20px;align-content:stretch;min-height:0}
+.plan{
+  border:4px solid var(--ink);border-radius:var(--r);background:var(--white);
+  box-shadow:var(--hard);cursor:pointer;position:relative;padding:22px 28px 18px;
+  display:flex;flex-direction:column;font-family:inherit;text-align:left;
+  transition:transform .08s,box-shadow .08s;
+}
+.plan:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink)}
+.plan .badge{
+  position:absolute;top:-18px;left:24px;background:var(--red);color:var(--white);
+  font-weight:900;font-size:15px;padding:7px 18px;border:3px solid var(--ink);
+  box-shadow:var(--hard-sm);transform:rotate(-2deg);
+}
+.plan.alt .badge{background:var(--blue)}
+.plan .pn{font-size:27px;font-weight:900;margin-top:8px}
+.plan .pd{font-size:15px;color:var(--ink-soft);font-weight:600;margin-top:6px;line-height:1.6;flex:1}
+.plan ul{list-style:none;margin-top:10px}
+.plan li{font-size:15px;font-weight:700;padding:5px 0;border-top:2px dashed #d8d0bd;display:flex;gap:10px;align-items:center}
+.plan li:before{content:"✓";color:var(--green);font-weight:900;font-size:17px}
+.plan .pp{margin-top:12px;background:var(--paper-2);border:3px solid var(--ink);border-radius:12px;padding:8px 16px;text-align:center}
+.plan .pp .n{font-size:32px;font-weight:900;color:var(--red)}
+.plan .pp .u{font-size:14px;font-weight:800;color:var(--ink-soft)}
+.plan .pick{margin-top:10px;text-align:center;background:var(--yellow);border:3px solid var(--ink);border-radius:10px;font-weight:900;font-size:18px;padding:10px;box-shadow:var(--hard-sm)}
+/* ===== 見積もり ===== */
+#quote .grid{flex:1;display:grid;grid-template-columns:1.25fr 1fr;gap:30px;margin-top:20px;min-height:0}
+.qsheet{
+  background:var(--white);border:4px solid var(--ink);border-radius:var(--r);
+  box-shadow:var(--hard);padding:26px 32px;display:flex;flex-direction:column;
+}
+.qsheet .qh{display:flex;justify-content:space-between;align-items:baseline;border-bottom:4px solid var(--ink);padding-bottom:12px}
+.qsheet .qh .t{font-size:24px;font-weight:900}
+.qsheet .qh .no{font-size:13px;font-weight:700;color:var(--ink-mute)}
+#quote h1{font-size:36px}
+.qrow{display:flex;justify-content:space-between;align-items:center;padding:11px 2px;border-bottom:2px dashed #d8d0bd;font-size:16px;font-weight:700}
+.qrow>span:first-child{flex:none;white-space:nowrap;margin-right:16px}
+.qrow .v{text-align:right}
+.qrow .v{font-weight:900;font-size:19px}
+.qrow.total{border-bottom:none;background:var(--red-tint);margin:12px -14px 0;padding:14px;border-radius:12px;border:3px solid var(--red)}
+.qrow.total .l{font-size:19px;font-weight:900}
+.qrow.total .v{font-size:34px;color:var(--red-deep)}
+.qrow.total .v small{font-size:15px;color:var(--ink-soft)}
+.stamp{
+  align-self:flex-end;margin-top:auto;color:var(--red);border:3px solid var(--red);
+  border-radius:8px;padding:4px 12px;font-weight:900;font-size:13px;transform:rotate(-4deg);opacity:.85;
+}
+.qside{display:flex;flex-direction:column;gap:18px;min-height:0}
+.stepbox{background:var(--white);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard);padding:18px 24px}
+.stepbox .lbl{font-weight:900;font-size:17px;margin-bottom:10px}
+.stepper{display:flex;align-items:center;gap:18px;justify-content:center}
+.stepper button{
+  width:64px;height:64px;border-radius:14px;border:4px solid var(--ink);
+  background:var(--yellow);font-size:34px;font-weight:900;cursor:pointer;box-shadow:var(--hard-sm);
+  font-family:inherit;
+}
+.stepper button:active{transform:translate(3px,3px);box-shadow:none}
+.stepper .n{font-size:46px;font-weight:900;min-width:80px;text-align:center}
+.qnote{font-size:13px;color:var(--ink-mute);font-weight:600;line-height:1.6}
+.qcta{display:flex;flex-direction:column;gap:12px;margin-top:auto}
+/* ===== 完了 ===== */
+#done .wrap{flex:1;display:flex;align-items:center;gap:44px}
+#done img{width:300px;filter:drop-shadow(6px 6px 0 rgba(21,21,26,.18))}
+.sendcard{background:var(--white);border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--hard);padding:26px 30px;display:flex;gap:24px;align-items:center;margin-top:20px}
+.qr{
+  width:130px;height:130px;border:4px solid var(--ink);border-radius:12px;flex:none;
+  background:
+   repeating-linear-gradient(0deg,var(--ink) 0 8px,transparent 8px 16px),
+   repeating-linear-gradient(90deg,var(--ink) 0 8px,var(--white) 8px 16px);
+}
+.sendcard .t1{font-size:22px;font-weight:900}
+.sendcard .t2{font-size:15px;font-weight:600;color:var(--ink-soft);margin-top:6px;line-height:1.7}
+.rownav{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.backlink{background:none;border:none;font-family:inherit;font-size:16px;font-weight:800;color:var(--ink-mute);cursor:pointer;padding:10px}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- ヘッダー -->
+  <div id="hd">
+    <div class="logo">デンちゃん</div>
+    <div class="ttl">即決見積もり <span style="color:var(--ink-mute);font-size:13px">v0 モック</span></div>
+    <div class="spacer"></div>
+    <div id="steps">
+      <div class="dot" data-s="1">1</div><div class="bar"></div>
+      <div class="dot" data-s="2">2</div><div class="bar"></div>
+      <div class="dot" data-s="3">3</div><div class="bar"></div>
+      <div class="dot" data-s="4">4</div><div class="bar"></div>
+      <div class="dot" data-s="5">5</div>
+    </div>
+  </div>
+
+  <!-- S0: スタート -->
+  <section class="scr on" id="s0">
+    <div class="wrap">
+      <img src="images/denchan-main.png" alt="デンちゃん">
+      <div>
+        <div class="bubble">こんにちは！デンチュウのAI社員・デンちゃんです</div>
+        <div class="kicker">SOKKETSU MITSUMORI</div>
+        <h1>御社の見積もり、<br><span class="em">いま、この場で</span>作ります。</h1>
+        <p class="sub">動画を見て、3つ答えて、プランを選ぶだけ。<br>持ち帰りゼロ・その場で最終見積もりが出ます（約10分）。</p>
+        <div style="margin-top:30px">
+          <button class="btn" onclick="go('s1')">はじめる ▶</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S1: 動画 -->
+  <section class="scr" id="s1">
+    <div class="kicker">STEP 1 / 動画でご説明</div>
+    <h1>まずデンちゃんが<span class="em">90秒</span>でご説明します</h1>
+    <div id="player">
+      <div class="inner">
+        <img src="images/denchan-hold_phone.png" alt="">
+        <div class="vt">「電話のこまった」を、ぜんぶ引き受けます</div>
+        <div class="vs">迷惑電話ブロック ／ 通話の自動録音 ／ 会話を文字で記憶</div>
+        <div id="playbtn" onclick="playVideo()">▶</div>
+      </div>
+      <div id="vhint">※本番は and-render 製の商材アニメが入ります</div>
+      <div id="prog"></div>
+    </div>
+    <div class="vrow">
+      <button class="backlink" onclick="go('s0')">← もどる</button>
+      <button class="btn ghost" onclick="go('q1')">スキップして診断へ →</button>
+    </div>
+  </section>
+
+  <!-- Q1: 業種 -->
+  <section class="scr" id="q1">
+    <div class="kicker">STEP 2 / かんたん診断 1問目</div>
+    <h1>御社の<span class="em">お仕事</span>は？</h1>
+    <div class="tiles g4">
+      <button class="tile" onclick="ans('ind','建設・製造')"><span class="ic">🏗️</span><span><span class="t1">建設・製造</span><div class="t2">現場と事務所の電話が多い</div></span></button>
+      <button class="tile" onclick="ans('ind','医療・介護')"><span class="ic">🏥</span><span><span class="t1">医療・介護</span><div class="t2">予約・問い合わせ対応が多い</div></span></button>
+      <button class="tile" onclick="ans('ind','士業・事務所')"><span class="ic">📋</span><span><span class="t1">士業・事務所</span><div class="t2">「言った言わない」が怖い</div></span></button>
+      <button class="tile" onclick="ans('ind','店舗・サービス')"><span class="ic">🏪</span><span><span class="t1">店舗・サービス</span><div class="t2">営業中は電話に出られない</div></span></button>
+    </div>
+    <div class="rownav"><button class="backlink" onclick="go('s1')">← もどる</button></div>
+  </section>
+
+  <!-- Q2: 規模 -->
+  <section class="scr" id="q2">
+    <div class="kicker">STEP 2 / かんたん診断 2問目</div>
+    <h1>会社の<span class="em">規模</span>は？</h1>
+    <div class="tiles g2">
+      <button class="tile" onclick="ans('size','10名まで（電話1〜2回線）')"><span class="ic">👤</span><span><span class="t1">10名まで</span><div class="t2">電話はだいたい1〜2回線</div></span></button>
+      <button class="tile" onclick="ans('size','11名以上（電話3回線〜）')"><span class="ic">👥</span><span><span class="t1">11名以上</span><div class="t2">電話は3回線以上ある</div></span></button>
+    </div>
+    <div class="rownav"><button class="backlink" onclick="go('q1')">← もどる</button></div>
+  </section>
+
+  <!-- Q3: 困りごと -->
+  <section class="scr" id="q3">
+    <div class="kicker">STEP 2 / かんたん診断 3問目</div>
+    <h1>いま、いちばんの<span class="em">こまりごと</span>は？</h1>
+    <div class="tiles g4">
+      <button class="tile" onclick="ans('pain','迷惑電話・詐欺電話が不安')"><span class="ic">🚫</span><span><span class="t1">迷惑電話・詐欺電話</span><div class="t2">変な営業電話が多くて不安</div></span></button>
+      <button class="tile" onclick="ans('pain','言った言わないのトラブル')"><span class="ic">⚖️</span><span><span class="t1">言った言わない</span><div class="t2">電話の内容が残っていない</div></span></button>
+      <button class="tile" onclick="ans('pain','電話対応に人手を取られる')"><span class="ic">😵</span><span><span class="t1">電話対応の人手不足</span><div class="t2">電話番のために人が動けない</div></span></button>
+      <button class="tile" onclick="ans('pain','録音の料金が高い')"><span class="ic">💸</span><span><span class="t1">録音の料金が高い</span><div class="t2">今の録音装置・保守が高い</div></span></button>
+    </div>
+    <div class="rownav"><button class="backlink" onclick="go('q2')">← もどる</button></div>
+  </section>
+
+  <!-- S3: 2案提示 -->
+  <section class="scr" id="plans">
+    <div class="kicker">STEP 3 / プランは2つだけ</div>
+    <h1 style="font-size:36px"><span id="plead">御社</span>には、この<span class="em">2つ</span>。お好きな方をどうぞ</h1>
+    <div class="plans">
+      <button class="plan" onclick="pick('oudou')">
+        <div class="badge">いちばん選ばれています</div>
+        <div class="pn">まるごとまもりプラン</div>
+        <div class="pd">迷惑電話のブロックから録音・文字起こしまで、電話の守りをぜんぶ一式で。</div>
+        <ul>
+          <li>迷惑電話・詐欺電話を自動ブロック</li>
+          <li>通話をぜんぶ自動録音（クラウド保管）</li>
+          <li>会話を文字にして「言った言わない」ゼロ</li>
+          <li>デンチュウが見回り・保守もセット</li>
+        </ul>
+        <div class="pp"><span class="n" id="p1base">19,800</span><span class="u">円/月（税別・モデル試算）〜</span></div>
+        <div class="pick">このプランにする ▶</div>
+      </button>
+      <button class="plan alt" onclick="pick('zero')">
+        <div class="badge">初期費用をかけたくない方に</div>
+        <div class="pn">装置0円スタート</div>
+        <div class="pd">録音装置は0円設置。まず録音と文字の記憶から、身軽にはじめる。</div>
+        <ul>
+          <li>録音装置の設置 0円</li>
+          <li>通話の自動録音＋文字起こし</li>
+          <li>月額だけ・しばりは12ヶ月から</li>
+          <li>あとから「まるごとまもり」へ変更OK</li>
+        </ul>
+        <div class="pp"><span class="n" id="p2base">12,800</span><span class="u">円/月（税別・モデル試算）〜</span></div>
+        <div class="pick">このプランにする ▶</div>
+      </button>
+    </div>
+    <div class="rownav"><button class="backlink" onclick="go('q3')">← もどる</button></div>
+  </section>
+
+  <!-- S4: 最終見積もり -->
+  <section class="scr" id="quote">
+    <div class="kicker">STEP 4 / 最終見積もり</div>
+    <h1>はい、<span class="em">お見積もり</span>できました</h1>
+    <div class="grid">
+      <div class="qsheet">
+        <div class="qh"><span class="t" id="qplan">まるごとまもりプラン</span><span class="no" id="qno">見積No. DQ-20260715-001</span></div>
+        <div class="qrow"><span>ご診断</span><span class="v" id="qdiag" style="font-size:15px;font-weight:700;color:var(--ink-soft)">—</span></div>
+        <div class="qrow"><span>回線数</span><span class="v"><span id="qlines">1</span> 回線</span></div>
+        <div class="qrow"><span>初期費用</span><span class="v" style="color:var(--green)">0円</span></div>
+        <div class="qrow"><span>月額（機器・保守込み）</span><span class="v"><span id="qmon">19,800</span>円</span></div>
+        <div class="qrow total"><span class="l">お支払い（月々）</span><span class="v"><span id="qtotal">19,800</span>円<small>／月（税別）</small></span></div>
+        <div style="font-size:12px;color:var(--ink-mute);font-weight:600;margin-top:10px">※画面の金額はすべてダミー（モデル試算）です。リース60回払い想定。正式条件は契約書面によります。</div>
+        <div class="stamp">担当代理店 D001</div>
+      </div>
+      <div class="qside">
+        <div class="stepbox">
+          <div class="lbl">回線数（電話の本数）</div>
+          <div class="stepper">
+            <button onclick="lines(-1)">−</button>
+            <span class="n" id="lnum">1</span>
+            <button onclick="lines(1)">＋</button>
+          </div>
+        </div>
+        <div class="qnote">この場で申込みいただくと、最短で<b>今週中に設置日</b>をご案内できます。見積もりだけのお持ち帰りももちろんOKです。</div>
+        <div class="qcta">
+          <button class="btn green" style="font-size:24px;width:100%" onclick="go('done')">この内容で申込む ✍</button>
+          <button class="btn ghost" style="width:100%" onclick="go('done')">見積もりだけ受け取る</button>
+        </div>
+      </div>
+    </div>
+    <div class="rownav"><button class="backlink" onclick="go('plans')">← プランを選び直す</button></div>
+  </section>
+
+  <!-- S5: 完了 -->
+  <section class="scr" id="done">
+    <div class="wrap">
+      <img src="images/denchan-happy.png" alt="">
+      <div style="flex:1">
+        <div class="kicker">STEP 5 / お手元にお送りします</div>
+        <h1>ありがとうございます！<br><span class="em">LINEかメール</span>でお送りします</h1>
+        <div class="sendcard">
+          <div class="qr"></div>
+          <div>
+            <div class="t1">QRを読み取ると、LINEに見積もりPDFが届きます</div>
+            <div class="t2">申込みリンクも一緒に届きます。社内でご検討のうえ、タップするだけで手続きが進みます。<br><b>担当: デンチュウ 代理店 D001</b>（成約はデンちゃんが自動で記帳します）</div>
+          </div>
+        </div>
+        <div style="margin-top:22px;display:flex;gap:14px">
+          <button class="btn yellow" style="font-size:20px" onclick="alert('モック: メール送付フォームが開きます')">メールで受け取る</button>
+          <button class="btn ghost" onclick="reset()">最初にもどる ⟲</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <div id="ft">
+    <span class="agent">代理店 D001</span>
+    <span>デンチュウ株式会社 × AIデンちゃん</span>
+    <span class="spacer"></span>
+    <span>※本画面はプロトタイプです。金額はすべてダミー（モデル試算）。</span>
+  </div>
+</div>
+
+<script>
+// ===== 状態 =====
+const state = { ind:null, size:null, pain:null, plan:'oudou', lines:1 };
+const PRICE = { oudou:{base:19800, add:6800}, zero:{base:12800, add:4400} };
+const PLAN_NAME = { oudou:'まるごとまもりプラン', zero:'装置0円スタート' };
+const STEP_OF = { s0:0, s1:1, q1:2, q2:2, q3:2, plans:3, quote:4, done:5 };
+
+// ===== 画面遷移 =====
+function go(id){
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const cur = STEP_OF[id];
+  document.querySelectorAll('#steps .dot').forEach(d=>{
+    const n = +d.dataset.s;
+    d.classList.toggle('on', n===cur);
+    d.classList.toggle('done', n<cur);
+  });
+  if(id==='quote') renderQuote();
+}
+
+// ===== 動画（フェイク再生） =====
+let vt = null;
+function playVideo(){
+  const p = document.getElementById('prog');
+  const b = document.getElementById('playbtn');
+  b.style.display='none';
+  let w = 0;
+  clearInterval(vt);
+  vt = setInterval(()=>{
+    w += 4;                       // モック: 約7秒で再生完了扱い
+    p.style.width = w + '%';
+    if(w>=100){ clearInterval(vt); setTimeout(()=>go('q1'), 400); }
+  }, 280);
+}
+
+// ===== 診断 =====
+function ans(key, val){
+  state[key] = val;
+  if(key==='ind') go('q2');
+  else if(key==='size') go('q3');
+  else {
+    // 困りごとで2案の主語を変える（推薦の芽）
+    const lead = document.getElementById('plead');
+    lead.textContent = state.ind ? state.ind + 'の御社' : '御社';
+    go('plans');
+  }
+}
+
+// ===== プラン選択 =====
+function pick(p){ state.plan = p; state.lines = 1; go('quote'); }
+
+// ===== 見積もり =====
+function lines(d){
+  state.lines = Math.min(9, Math.max(1, state.lines + d));
+  renderQuote();
+}
+function renderQuote(){
+  const pr = PRICE[state.plan];
+  const mon = pr.base + pr.add*(state.lines-1);
+  document.getElementById('qplan').textContent = PLAN_NAME[state.plan];
+  document.getElementById('qdiag').textContent =
+    [state.ind, state.size, state.pain].filter(Boolean).join(' ／ ') || '—';
+  document.getElementById('qlines').textContent = state.lines;
+  document.getElementById('lnum').textContent = state.lines;
+  document.getElementById('qmon').textContent = mon.toLocaleString();
+  document.getElementById('qtotal').textContent = mon.toLocaleString();
+}
+function reset(){
+  state.ind=state.size=state.pain=null; state.plan='oudou'; state.lines=1;
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('playbtn').style.display='flex';
+  go('s0');
+}
+
+// ===== タブレット枠を画面にフィット =====
+function fit(){
+  const s = Math.min(innerWidth/1200, innerHeight/840, 1);
+  document.getElementById('stage').style.transform = 'scale('+s+')';
+}
+addEventListener('resize', fit); fit();
+</script>
+</body>
+</html>
