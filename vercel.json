@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/mitsumori",
+      "destination": "https://faxtoru.vercel.app/mitsumori?src=D001",
+      "permanent": false
+    },
+    {
+      "source": "/mitsumori/",
+      "destination": "https://faxtoru.vercel.app/mitsumori?src=D001",
+      "permanent": false
+    },
+    {
+      "source": "/mitsumori/:path*",
+      "destination": "https://faxtoru.vercel.app/mitsumori?src=D001",
+      "permanent": false
+    }
+  ]
+}
